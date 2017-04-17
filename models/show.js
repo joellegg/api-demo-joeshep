@@ -1,9 +1,11 @@
 'use strict'
 
 const { bookshelf } = require('../db/database')
+require('./favorite')
 
 const Show = bookshelf.Model.extend({
-  tableName: 'shows'
+  tableName: 'shows',
+  upvotes: function() { return this.hasMany('Favorite') }
 }, {
   getAll: function() {
     console.log('Get all called from show model')
@@ -18,4 +20,4 @@ const Show = bookshelf.Model.extend({
   }
 })
 
-module.exports = Show
+module.exports = bookshelf.model('Show', Show)

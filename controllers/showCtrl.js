@@ -12,3 +12,13 @@ module.exports.getShows = (req, res, next) => {
     next(err)
   })
 }
+
+module.exports.getShowFaves = ({query: {showId}}, res, next) => {
+  console.log('The query string', showId)
+  Show.forge({id: showId})
+  .fetch({withRelated: ['upvotes'], require: true})
+  .then((faves) => {
+    res.status(200).json(faves)
+  })
+  .catch(err => next(err))
+}
