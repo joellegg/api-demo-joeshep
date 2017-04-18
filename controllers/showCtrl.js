@@ -13,6 +13,14 @@ module.exports.getShows = (req, res, next) => {
   })
 }
 
+module.exports.getShow = (req, res, next) => {
+  Show.forge({id: req.params.id})
+  .fetch()
+  .then((show) => {
+    res.status(200).json(show)
+  })
+}
+
 module.exports.getShowFaves = ({query: {showId}}, res, next) => {
   console.log('The query string', showId)
   Show.forge({id: showId})
@@ -21,4 +29,12 @@ module.exports.getShowFaves = ({query: {showId}}, res, next) => {
     res.status(200).json(faves)
   })
   .catch(err => next(err))
+}
+
+module.exports.addShow = ({body}, res, next) => {
+  Show.forge(body)
+  .save()
+  .then(() => {
+    res.status(201).json({'msg': 'Nice POST'})
+  })
 }

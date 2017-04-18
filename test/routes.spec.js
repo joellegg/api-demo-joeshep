@@ -30,7 +30,7 @@ describe('Shows routes', () => {
           res.should.be.json
           res.body.should.be.a('array')
           res.body[0].should.have.property('name')
-          res.body[0].name.should.equal('Mr. Robot')
+          res.body[0].name.should.equal('The IT Crowd')
         })
     })
   })
@@ -38,13 +38,31 @@ describe('Shows routes', () => {
   describe('GET /api/v1/shows/:id', () => {
     it('should return a single show', () => {
       return chai.request(server)
-      .get('/api/v1/shows/0')
+      .get('/api/v1/shows/1')
       .then((res) => {
         res.should.have.status(200)
         res.should.be.json
         res.body.should.be.a('object');
         res.body.should.have.property('name')
         res.body.name.should.equal('Mr. Robot')
+      })
+    })
+  })
+
+  describe('POST /api/v1/shows/new', () => {
+    it('should add a new show obj to the db', () => {
+      return chai.request(server)
+      .post('/api/v1/shows/new')
+      .send({
+        name: 'The Simpsons',
+        channel: 'Fox',
+        genre: 'Animation',
+        inProduction: true
+      })
+      .then((res) => {
+        res.should.have.status(201)
+        res.should.be.json
+        res.should.be.a('object')
       })
     })
   })

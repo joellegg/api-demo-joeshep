@@ -9,9 +9,9 @@ var app = express();
 
 // This 'if' statement prevents application log messages from
 // displaying in the stdout when the tests are run
-// if (process.env.NODE_ENV !== 'test') {
-//   app.use(logger('dev'));
-// }
+if (process.env.NODE_ENV !== 'test') {
+  app.use(logger('dev'));
+}
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -44,8 +44,8 @@ app.use( (err, req, res, next) => {
 })
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Listening on port ${port} in this super keen env: ${process.env.NODE_ENV}`);
-});
+// app.listen(port, () => {
+//   console.log(`Listening on port ${port} in this super keen env: ${process.env.NODE_ENV}`);
+// });
 
 module.exports = app;

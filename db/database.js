@@ -14,8 +14,8 @@ bookshelf.plugin('registry');
 
 module.exports = {knex, bookshelf}
 
-
-// Then we ran these to
+// Then we run these to
 // Apply the migrations to both databases:
 // $ knex migrate:latest --env development
 // $ knex migrate:latest --env test
+// $ knex migrate:latest --env production (if needed)

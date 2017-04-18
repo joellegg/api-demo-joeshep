@@ -1,9 +1,9 @@
 // File and its directory generated with
-// $ knex seed:make shows_seed --env development.
+// $ knex seed:make shows_seed --env test.
 // knex knows to put it in the db folder (?)
 
 // Then seeded the db with 
-// $ knex seed:run --env development
+// $ knex seed:run --env test
 
 exports.seed = function(knex, Promise) {
   return knex('shows').del() // Deletes ALL existing entries
