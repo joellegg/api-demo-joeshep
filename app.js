@@ -7,8 +7,7 @@ var routes = require('./routes/');
 
 var app = express();
 
-// This 'if' statement prevents application log messages from
-// displaying in the stdout when the tests are run
+// This 'if' statement prevents application log messages from displaying in the stdout when the tests are run
 if (process.env.NODE_ENV !== 'test') {
   app.use(logger('dev'));
 }
